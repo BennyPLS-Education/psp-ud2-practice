@@ -1,6 +1,7 @@
 package race;
 
 import horse.Horse;
+import road.obstacle.Road;
 import ui.ASCII;
 import ui.Leaderboard;
 import ui.Progress;

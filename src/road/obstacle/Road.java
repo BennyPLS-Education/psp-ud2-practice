@@ -1,7 +1,7 @@
-package race;
+package road.obstacle;
 
 import horse.Horse;
-import obstacle.Obstacle;
+import road.obstacle.Obstacle;
 
 import java.util.*;
 

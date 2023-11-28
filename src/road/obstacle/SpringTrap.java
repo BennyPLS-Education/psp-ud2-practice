@@ -1,4 +1,4 @@
-package obstacle;
+package road.obstacle;
 
 import horse.Horse;
 

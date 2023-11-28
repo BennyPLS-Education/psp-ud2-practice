@@ -4,14 +4,12 @@ import horse.modifiers.FartModifier;
 import horse.modifiers.Modifier;
 import horse.modifiers.PooModifier;
 import race.Race;
-import race.Road;
+import road.obstacle.Road;
 import ui.ASCII;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-
-import static utils.ThreadUtility.waitTime;
 
 public class Horse extends Thread {
     
@@ -32,6 +30,7 @@ public class Horse extends Thread {
     private final Race race;
     
     private long finishedAt = -1;
+    private boolean isDead = false;
     
     public boolean isWaiting = false;
     
@@ -163,4 +162,6 @@ public class Horse extends Thread {
     public void setVelocityModifierBase(double velocityModifierBase) {
         this.velocityModifierBase = velocityModifierBase;
     }
+    
+    
 }

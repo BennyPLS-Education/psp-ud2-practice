@@ -1,9 +1,9 @@
 package ui;
 
 import horse.Horse;
-import obstacle.Obstacle;
+import road.obstacle.Obstacle;
 import race.Race;
-import race.Road;
+import road.obstacle.Road;
 
 import java.util.HashMap;
 import java.util.List;

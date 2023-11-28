@@ -2,7 +2,7 @@ package ui;
 
 import horse.Horse;
 import race.Race;
-import race.Road;
+import road.obstacle.Road;
 
 import java.util.Date;
 import java.util.List;
