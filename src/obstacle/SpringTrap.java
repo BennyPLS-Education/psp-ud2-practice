@@ -9,6 +9,6 @@ public class SpringTrap extends Obstacle {
     
     @Override
     protected void effect(Horse horse) {
-        horse.modVelocity(-(horse.getVelocity() * 2));
+        horse.modVelocity(-(horse.getVelocity() * 4));
     }
 }
