@@ -15,11 +15,11 @@ import java.util.Random;
 public class Horse extends Thread {
     
     private static final Random random = new Random();
-    private static final List<Modifier> horseModifiersAfter = List.of(
+    private static final List<Modifier> minorModifiers = List.of(
         new PooModifier(),
         new FartModifier()
     );
-    private static final List<Modifier> horseModifiersBefore = List.of(
+    private static final List<Modifier> majorModifiers = List.of(
         new HeartAttack()
     );
     
@@ -96,7 +96,7 @@ public class Horse extends Thread {
     public void velocityVariation() {
         double stdSpeedVariation = random.nextDouble(-5.0, 6.0);
         
-        horseModifiersBefore.forEach(modifier -> modifier.affect(this));
+        majorModifiers.forEach(modifier -> modifier.affect(this));
         
         var speedVariation = (stdSpeedVariation + additionalVelocity) * velocityModifier;
         additionalVelocity = 0;
@@ -108,7 +108,7 @@ public class Horse extends Thread {
         restrictVelocity();
         
         
-        horseModifiersAfter.forEach(modifier -> modifier.affect(this));
+        minorModifiers.forEach(modifier -> modifier.affect(this));
     }
     
     private void restrictVelocity() {
