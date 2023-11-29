@@ -58,7 +58,6 @@ public class Horse extends Thread {
         
         while (true) {
             road.update(this);
-            velocityModifier = velocityModifierBase;
             
             if (isInterrupted() || isDead) {
                 break;
@@ -101,11 +100,13 @@ public class Horse extends Thread {
         
         var speedVariation = (stdSpeedVariation + additionalVelocity) * velocityModifier;
         additionalVelocity = 0;
+        velocityModifier = velocityModifierBase;
         
         velocity += speedVariation;
         lastVariation = speedVariation;
         
         restrictVelocity();
+        
         
         horseModifiersAfter.forEach(modifier -> modifier.affect(this));
     }

@@ -4,7 +4,7 @@ import horse.Horse;
 
 public class HeartAttack extends Modifier {
     public HeartAttack() {
-        super("Heart Attack", 0.01);
+        super("Heart Attack", 0.001);
     }
     
     @Override
