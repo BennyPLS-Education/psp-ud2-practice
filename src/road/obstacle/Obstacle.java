@@ -23,7 +23,8 @@ public abstract class Obstacle {
             new Banana(),
             new BoostPad(),
             new Rock(),
-            new SpringTrap()
+            new SpringTrap(),
+            new BlueShell()
         );
         
         return obstacles.get(random.nextInt(obstacles.size()));

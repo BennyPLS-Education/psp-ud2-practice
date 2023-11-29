@@ -1,6 +1,7 @@
 package horse;
 
 import horse.modifiers.FartModifier;
+import horse.modifiers.HeartAttack;
 import horse.modifiers.Modifier;
 import horse.modifiers.PooModifier;
 import race.Race;
@@ -19,7 +20,7 @@ public class Horse extends Thread {
         new FartModifier()
     );
     private static final List<Modifier> horseModifiersBefore = List.of(
-    
+        new HeartAttack()
     );
     
     public final ASCII color;
@@ -119,10 +120,6 @@ public class Horse extends Thread {
         }
     }
     
-    public boolean isStopped() {
-        return velocity == 0;
-    }
-    
     public double getVelocity() {
         return velocity;
     }
@@ -148,10 +145,6 @@ public class Horse extends Thread {
         return getName();
     }
     
-    
-    public void setVelocity(double velocity) {
-        this.velocity = velocity;
-    }
     
     public double getVelocityModifier() {
         return velocityModifier;

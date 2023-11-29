@@ -55,10 +55,6 @@ public class Road {
         }
     }
     
-    public double getPosition(Horse horse) {
-        return positions.get(horse);
-    }
-    
     public double getPercentage(Horse horse) {
         return positions.get(horse) / length;
     }
@@ -81,6 +77,14 @@ public class Road {
     
     public Map<Horse, Double> getPositions() {
         return positions;
+    }
+    
+    public double getPosition(Horse horse) {
+        return positions.get(horse);
+    }
+    
+    public void modPosition(Horse horse, double position) {
+        positions.put(horse, positions.get(horse) + position);
     }
     
     public List<Obstacle> getObstacles() {
