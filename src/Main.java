@@ -1,5 +1,5 @@
 import race.Race;
-import road.obstacle.Road;
+import road.Road;
 import utils.ThreadUtility;
 
 public class Main {

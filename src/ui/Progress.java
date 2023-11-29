@@ -1,9 +1,9 @@
 package ui;
 
 import horse.Horse;
-import road.obstacle.Obstacle;
 import race.Race;
-import road.obstacle.Road;
+import road.Road;
+import road.obstacle.Obstacle;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +36,6 @@ public class Progress {
     }
     
     private void printHorse(Horse horse) {
-        
         setUpColor(horse);
         
         System.out.print("|" + "-".repeat(101) + "|");
@@ -68,6 +67,11 @@ public class Progress {
     
     private static void setUpColor(Horse horse) {
         System.out.print(horse.color);
-        System.out.print(ASCII.BRIGHT_BLACK_BACKGROUND);
+        
+        if (horse.isDead()) {
+            System.out.print(ASCII.BRIGHT_RED_BACKGROUND);
+        } else {
+            System.out.print(ASCII.BRIGHT_BLACK_BACKGROUND);
+        }
     }
 }

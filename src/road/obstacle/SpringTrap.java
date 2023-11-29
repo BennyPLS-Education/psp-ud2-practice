@@ -1,6 +1,7 @@
 package road.obstacle;
 
 import horse.Horse;
+import road.Road;
 
 public class SpringTrap extends Obstacle {
     public SpringTrap() {
@@ -8,7 +9,7 @@ public class SpringTrap extends Obstacle {
     }
     
     @Override
-    protected void effect(Horse horse) {
-        horse.modVelocity(-(horse.getVelocity() * 4));
+    protected void effect(Horse horse, Road road) {
+        horse.modVelocity(-(horse.getVelocity() * 3));
     }
 }

@@ -1,6 +1,7 @@
 package road.obstacle;
 
 import horse.Horse;
+import road.Road;
 
 public class BoostPad extends Obstacle {
     public BoostPad() {
@@ -8,8 +9,8 @@ public class BoostPad extends Obstacle {
     }
     
     @Override
-    protected void effect(Horse horse) {
+    protected void effect(Horse horse, Road road) {
         horse.setVelocityModifier(horse.getVelocityModifierBase() + 1);
-        horse.modVelocity(10);
+        horse.setAdditionalVelocity(horse.getAdditionalVelocity() + 10);
     }
 }

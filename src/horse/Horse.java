@@ -4,7 +4,7 @@ import horse.modifiers.FartModifier;
 import horse.modifiers.Modifier;
 import horse.modifiers.PooModifier;
 import race.Race;
-import road.obstacle.Road;
+import road.Road;
 import ui.ASCII;
 
 import java.util.Date;
@@ -22,16 +22,15 @@ public class Horse extends Thread {
     
     );
     
-    public ASCII color;
+    public final ASCII color;
     
     /* The road where the horse is running */
     private final Road road;
     /* The race he is running */
     private final Race race;
     
-    private long finishedAt = -1;
+    private long finishedAt = 0;
     private boolean isDead = false;
-    
     public boolean isWaiting = false;
     
     /* The velocity is represented in km per hour */
@@ -40,6 +39,7 @@ public class Horse extends Thread {
     
     private double lastVariation = 0;
     private double velocity = 50;
+    private double additionalVelocity = 0;
     private double velocityModifier = 1;
     private double velocityModifierBase = 1;
     
@@ -59,14 +59,18 @@ public class Horse extends Thread {
             road.update(this);
             velocityModifier = velocityModifierBase;
             
-            if (isInterrupted()) {
+            if (isInterrupted() || isDead) {
                 break;
             }
             
             waitWrapper();
         }
         
-        finishedAt = System.currentTimeMillis();
+        if (isDead) {
+            finishedAt = -1;
+        } else {
+            finishedAt = System.currentTimeMillis();
+        }
     }
     
     /**
@@ -94,7 +98,9 @@ public class Horse extends Thread {
         
         horseModifiersBefore.forEach(modifier -> modifier.affect(this));
         
-        var speedVariation = stdSpeedVariation * velocityModifier;
+        var speedVariation = (stdSpeedVariation + additionalVelocity) * velocityModifier;
+        additionalVelocity = 0;
+        
         velocity += speedVariation;
         lastVariation = speedVariation;
         
@@ -126,7 +132,7 @@ public class Horse extends Thread {
     }
     
     public boolean isFinished() {
-        return finishedAt != -1;
+        return finishedAt > 0;
     }
     
     public Date getFinishedAt() {
@@ -163,5 +169,19 @@ public class Horse extends Thread {
         this.velocityModifierBase = velocityModifierBase;
     }
     
+    public boolean isDead() {
+        return isDead;
+    }
     
+    public void kill() {
+        isDead = true;
+    }
+    
+    public double getAdditionalVelocity() {
+        return additionalVelocity;
+    }
+    
+    public void setAdditionalVelocity(double additionalVelocity) {
+        this.additionalVelocity = additionalVelocity;
+    }
 }

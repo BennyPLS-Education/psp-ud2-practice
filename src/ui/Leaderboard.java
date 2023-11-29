@@ -2,7 +2,7 @@ package ui;
 
 import horse.Horse;
 import race.Race;
-import road.obstacle.Road;
+import road.Road;
 
 import java.util.Date;
 import java.util.List;
@@ -37,8 +37,8 @@ public class Leaderboard {
         System.out.print(ASCII.CLEAR);
         
         System.out.println("\t\t\t\t\t Leaderboard of " + (int) (road.getLength() * 1000) + "m Race");
-        System.out.println("\t      " + "-".repeat(70));
-        System.out.println("\t       Num Change  Name        Percentage  Velocity   Variation    Finished");
+        System.out.println("\t      " + "-".repeat(75));
+        System.out.println("\t       Num   Ch    Name        Percentage  Velocity \t   Variation\tFinished");
         
         for (int i = 0, horsesSize = horses.size(); i < horsesSize; i++) {
             printHorse(horses.get(i), i + 1);
@@ -65,7 +65,7 @@ public class Leaderboard {
         
         System.out.printf("%-" + (race.getLongestNameLength() + 4) + "s", horse.getName());
         
-        System.out.printf("%-7s %-10s ",
+        System.out.printf("%-7s %-10s\t",
             PERCENTAGE_FORMAT.format(road.getPercentage(horse)),
             VELOCITY_FORMAT.format(horse.getVelocity())
         );
@@ -79,11 +79,13 @@ public class Leaderboard {
         if (horse.isFinished()) {
             var timeDiff = horse.getFinishedAt().getTime() - startTime.getTime();
             System.out.printf("%s %s%s%s", TIME_FORMAT.format(new Date(timeDiff)), ASCII.GREEN, "✓", RESET);
+        } else if (horse.isDead()) {
+            System.out.printf("%s%s%s", ASCII.RED, " DEAD ✗ ", RESET);
         } else {
-            System.out.printf("%s%s%s", ASCII.RED, "    ✗   ", RESET);
+            System.out.printf("%s%s%s", ASCII.YELLOW, "    ✗   ", RESET);
         }
         
-        System.out.println("        ");
+        System.out.println();
     }
     
     private static void variationStats(Horse horse) {
@@ -96,6 +98,7 @@ public class Leaderboard {
             horse.getLastVariation() == 0 ? "=" :
                 horse.getLastVariation() > 0 ? "↑" : "↓",
             DOUBLE_FORMAT.format(horse.getLastVariation()),
+            
             RESET,
             horse.getVelocityModifier() == 1 ? "" :
                 isPositiveVariation == isPositiveVelocityModifier ? ASCII.GREEN : ASCII.RED,

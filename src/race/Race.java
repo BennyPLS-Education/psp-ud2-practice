@@ -1,7 +1,7 @@
 package race;
 
 import horse.Horse;
-import road.obstacle.Road;
+import road.Road;
 import ui.ASCII;
 import ui.Leaderboard;
 import ui.Progress;
@@ -49,6 +49,7 @@ public class Race {
             
             while (!allReady()) {
                 if (allFinished()) break;
+                waitTime();
             }
             
             UI();
@@ -85,7 +86,7 @@ public class Race {
     
     private boolean allReady() {
         for (Horse participant : participants) {
-            if (!participant.isWaiting && !participant.isFinished()) {
+            if (!participant.isWaiting && !(participant.isFinished() || participant.isDead())) {
                 return false;
             }
         }
@@ -95,17 +96,7 @@ public class Race {
     
     private boolean allFinished() {
         for (Horse participant : participants) {
-            if (!participant.isFinished()) {
-                return false;
-            }
-        }
-        
-        return true;
-    }
-    
-    private boolean allStopped() {
-        for (Horse participant : participants) {
-            if (!participant.isStopped()) {
+            if (!participant.isFinished() && !participant.isDead()) {
                 return false;
             }
         }

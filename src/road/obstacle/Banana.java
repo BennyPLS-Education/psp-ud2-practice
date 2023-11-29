@@ -1,6 +1,7 @@
 package road.obstacle;
 
 import horse.Horse;
+import road.Road;
 
 public class Banana extends Obstacle {
     public Banana() {
@@ -8,7 +9,7 @@ public class Banana extends Obstacle {
     }
     
     @Override
-    protected void effect(Horse horse) {
-        horse.setVelocityModifier(horse.getVelocityModifier() - 0.1);
+    protected void effect(Horse horse, Road road) {
+        horse.setVelocityModifier(horse.getVelocityModifier() - 0.2);
     }
 }
