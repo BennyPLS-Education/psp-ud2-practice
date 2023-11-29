@@ -33,15 +33,16 @@ public class Main {
                 field.setAccessible(true);
                 field.set(race, Boolean.parseBoolean(args[2]));
             } catch (Exception ignored) {}
-            
-            
         }
         
         race.addParticipants("Andreu Gracia",
             "Jordi Pujol",
             "Jordi Hurtado",
             "Jordi Cruz",
-            "Jordi Évole"
+            "Jordi Évole",
+            "Jordi González",
+            "Jordi Hurtado",
+            "Jordi Hurtado"
         );
         
         return race;
