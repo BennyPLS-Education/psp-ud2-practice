@@ -49,7 +49,6 @@ public class Race {
             
             while (!allReady()) {
                 if (allFinished()) break;
-                waitTime();
             }
             
             UI();
